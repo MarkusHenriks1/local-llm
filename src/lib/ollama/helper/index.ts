@@ -6,7 +6,8 @@ export enum Model {
   LLARMA2_LATEST = 'llama2:latest',
   MISTRAL_LATEST = 'mistral:latest',
   DEEPSEEK_CODER = 'deepseek-coder:6.7b',
-  DOLPHIN2_2_MISTRAL = 'dolphin2.2-mistral:latest'
+  DOLPHIN2_2_MISTRAL = 'dolphin2.2-mistral:latest',
+  MEDLLAMA2 = 'medllama2:latest'
 }
 
 const ollama = new Ollama({
