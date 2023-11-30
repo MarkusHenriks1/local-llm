@@ -2,11 +2,14 @@
 
 import * as React from 'react'
 import { useState } from 'react'
-import { askOllama } from './helper'
+import { Model, askOllama } from './helper'
 
 const Question = () => {
   const [question, setQuestion] = useState('')
   const [answer, setAnswer] = useState('')
+  const [selectedModel, setSelectedModel] = useState(
+    Model.CODELLAMA_7B_INSTRUCT
+  )
 
   const handleChange = (event: React.FormEvent<HTMLInputElement>) => {
     setQuestion(event.currentTarget.value)
@@ -24,21 +27,55 @@ const Question = () => {
       return null
     }
 
-    const abc = await askOllama(question)
+    const askOllamaAnswer = await askOllama(question, selectedModel)
 
-    setAnswer(abc)
+    setAnswer(askOllamaAnswer)
   }
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
-        <input autoFocus type='text' value={question} onChange={handleChange} />
-        <button type='submit'>Ask</button>
-        <button type='reset' onClick={handleReset}>
-          Reset
-        </button>
+      <form style={{ display: 'flex' }} onSubmit={handleSubmit}>
+        <div style={{ paddingBottom: '30px', width: '80%' }}>
+          <input
+            style={{ fontSize: '30px', width: '80%', paddingRight: '30px' }}
+            autoFocus
+            type='text'
+            value={question}
+            onChange={handleChange}
+          />
+          <button style={{ fontSize: '30px' }} type='submit'>
+            Ask
+          </button>
+          <button
+            style={{ fontSize: '30px' }}
+            type='reset'
+            onClick={handleReset}
+          >
+            Reset
+          </button>
+          <div style={{ paddingTop: '30px', display: 'flex' }}>
+            <div>
+              <div style={{ fontSize: '20px' }}>Select your model</div>
+              <select
+                style={{ fontSize: '30px' }}
+                value={selectedModel}
+                onChange={(e) =>
+                  setSelectedModel(
+                    e.target.value as React.SetStateAction<Model>
+                  )
+                }
+              >
+                {Object.values(Model).map((modelName) => (
+                  <option key={modelName} value={modelName}>
+                    {modelName}
+                  </option>
+                ))}
+              </select>
+            </div>
+          </div>
+        </div>
       </form>
-      <div style={{ width: '500px' }}>{answer}</div>
+      <div style={{ width: '80%', fontSize: '30px' }}>{answer}</div>
     </div>
   )
 }

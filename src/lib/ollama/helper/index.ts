@@ -1,17 +1,26 @@
 import { Ollama } from 'langchain/llms/ollama'
 
-type Models =
-  | 'codellama:7b-instruct'
-  | 'codellama:latest'
-  | 'llama2:latest'
-  | 'mistral:latest'
+export enum Model {
+  CODELLAMA_7B_INSTRUCT = 'codellama:7b-instruct',
+  CODELLAMA_LATEST = 'codellama:latest',
+  LLARMA2_LATEST = 'llama2:latest',
+  MISTRAL_LATEST = 'mistral:latest',
+  DEEPSEEK_CODER = 'deepseek-coder:6.7b',
+  DOLPHIN2_2_MISTRAL = 'dolphin2.2-mistral:latest'
+}
 
 const ollama = new Ollama({
   baseUrl: 'http://localhost:11434',
-  model: 'codellama:7b-instruct' as Models
+  model: Model.CODELLAMA_7B_INSTRUCT
 })
 
-export const askOllama = async (question: string): Promise<string> => {
+export const askOllama = async (
+  question: string,
+  model?: Model
+): Promise<string> => {
+  if (model) {
+    ollama.model = model
+  }
   const answer = await ollama.call(question)
-  return answer
+  return answer.toString()
 }
