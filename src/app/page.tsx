@@ -1,13 +1,9 @@
 'use client'
 
-import DocumentUploader from '../lib/document-uploader'
+import Question from '@/lib/ollama'
 
 const MyPage = () => {
-  const handleUpload = (file: File) => {
-    // Handle file upload here
-  }
-
-  return <DocumentUploader onUpload={handleUpload} />
+  return <Question />
 }
 
 export default MyPage
