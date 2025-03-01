@@ -1,5 +1,4 @@
-import { ChatOllama } from "@langchain/ollama"
-
+import { ChatOllama } from '@langchain/ollama'
 
 export enum Model {
   CODELLAMA_7B_INSTRUCT = 'codellama:7b-instruct',
@@ -9,17 +8,14 @@ export enum Model {
   DEEPSEEK_CODER = 'deepseek-coder:6.7b',
   DOLPHIN2_2_MISTRAL = 'dolphin2.2-mistral:latest',
   MEDLLAMA2 = 'medllama2:latest',
-  LLAMA_3B_3_2 = 'llama3.2:latest',
+  LLAMA_3B_3_2 = 'llama3.2:latest'
 }
 
 const ollama = new ChatOllama({
   model: Model.LLAMA_3B_3_2
 })
 
-export const askOllama = async (
-  question: string,
-  model?: Model
-): Promise<string> => {
+export const askOllama = async (question: string, model?: Model): Promise<string> => {
   if (model) {
     ollama.model = model
   }

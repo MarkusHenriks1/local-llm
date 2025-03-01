@@ -8,9 +8,7 @@ import { toast, ToastContainer } from 'react-toastify'
 const Question = () => {
   const [question, setQuestion] = useState('')
   const [answer, setAnswer] = useState('')
-  const [selectedModel, setSelectedModel] = useState(
-    Model.LLAMA_3B_3_2
-  )
+  const [selectedModel, setSelectedModel] = useState(Model.LLAMA_3B_3_2)
 
   const handleChange = (event: React.FormEvent<HTMLInputElement>) => {
     setQuestion(event.currentTarget.value)
@@ -47,11 +45,7 @@ const Question = () => {
           <button style={{ fontSize: '30px' }} type='submit'>
             Ask
           </button>
-          <button
-            style={{ fontSize: '30px' }}
-            type='reset'
-            onClick={handleReset}
-          >
+          <button style={{ fontSize: '30px' }} type='reset' onClick={handleReset}>
             Reset
           </button>
           <div style={{ paddingTop: '30px', display: 'flex' }}>
@@ -60,11 +54,7 @@ const Question = () => {
               <select
                 style={{ fontSize: '30px' }}
                 value={selectedModel}
-                onChange={(e) =>
-                  setSelectedModel(
-                    e.target.value as React.SetStateAction<Model>
-                  )
-                }
+                onChange={(e) => setSelectedModel(e.target.value as React.SetStateAction<Model>)}
               >
                 {Object.values(Model).map((modelName) => (
                   <option key={modelName} value={modelName}>
