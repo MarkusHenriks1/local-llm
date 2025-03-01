@@ -1,6 +1,6 @@
 'use client'
 
-import * as React from 'react'
+import type * as React from 'react'
 import { useState } from 'react'
 import { Model, askOllama } from './helper'
 
@@ -8,7 +8,7 @@ const Question = () => {
   const [question, setQuestion] = useState('')
   const [answer, setAnswer] = useState('')
   const [selectedModel, setSelectedModel] = useState(
-    Model.CODELLAMA_7B_INSTRUCT
+    Model.LLAMA_3B_3_2
   )
 
   const handleChange = (event: React.FormEvent<HTMLInputElement>) => {

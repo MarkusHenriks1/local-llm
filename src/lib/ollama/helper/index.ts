@@ -1,4 +1,5 @@
-import { Ollama } from 'langchain/llms/ollama'
+import { ChatOllama } from "@langchain/ollama"
+
 
 export enum Model {
   CODELLAMA_7B_INSTRUCT = 'codellama:7b-instruct',
@@ -11,8 +12,7 @@ export enum Model {
   LLAMA_3B_3_2 = 'llama3.2:latest',
 }
 
-const ollama = new Ollama({
-  baseUrl: 'http://localhost:11434',
+const ollama = new ChatOllama({
   model: Model.LLAMA_3B_3_2
 })
 
@@ -23,6 +23,6 @@ export const askOllama = async (
   if (model) {
     ollama.model = model
   }
-  const answer = await ollama.call(question)
-  return answer.toString()
+  const answer = await ollama.invoke(question)
+  return answer.content.toString()
 }

@@ -3,7 +3,8 @@
   "version": "0.1.1",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbo",
+    "dev": "next dev",
+    "dev:turbo": "next dev --turbo",
     "build": "next build",
     "start": "next start",
     "lint": "biome lint ./",
@@ -13,7 +14,9 @@
     "upgrade:interactive": "pnpm ncu -i"
   },
   "dependencies": {
-    "langchain": "^0.0.203",
+    "@langchain/core": "^0.3.42",
+    "@langchain/ollama": "^0.2.0",
+    "langchain": "^0.3.19",
     "next": "14.0.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
