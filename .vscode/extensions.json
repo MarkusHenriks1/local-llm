@@ -1,0 +1,19 @@
+{
+  "recommendations": [
+    "biomejs.biome",
+    "stylelint.vscode-stylelint",
+    "redhat.vscode-xml",
+    "redhat.vscode-yaml",
+    "quick-lint.quick-lint-js",
+    "yoavbls.pretty-ts-errors",
+    "christian-kohler.path-intellisense",
+    "streetsidesoftware.code-spell-checker-norwegian-bokmal",
+    "usernamehw.errorlens",
+    "ms-azuretools.vscode-docker",
+    "streetsidesoftware.code-spell-checker",
+    "prisma.prisma",
+    "davidanson.vscode-markdownlint",
+    "pomdtr.excalidraw-editor",
+    "ryanluker.vscode-coverage-gutters"
+  ]
+}

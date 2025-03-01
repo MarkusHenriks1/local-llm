@@ -7,12 +7,13 @@ export enum Model {
   MISTRAL_LATEST = 'mistral:latest',
   DEEPSEEK_CODER = 'deepseek-coder:6.7b',
   DOLPHIN2_2_MISTRAL = 'dolphin2.2-mistral:latest',
-  MEDLLAMA2 = 'medllama2:latest'
+  MEDLLAMA2 = 'medllama2:latest',
+  LLAMA_3B_3_2 = 'llama3.2:latest',
 }
 
 const ollama = new Ollama({
   baseUrl: 'http://localhost:11434',
-  model: Model.CODELLAMA_7B_INSTRUCT
+  model: Model.LLAMA_3B_3_2
 })
 
 export const askOllama = async (
