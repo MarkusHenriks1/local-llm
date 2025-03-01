@@ -3,6 +3,7 @@
 import type * as React from 'react'
 import { useState } from 'react'
 import { Model, askOllama } from './helper'
+import { toast, ToastContainer } from 'react-toastify'
 
 const Question = () => {
   const [question, setQuestion] = useState('')
@@ -22,8 +23,7 @@ const Question = () => {
     event.preventDefault()
 
     if (!question) {
-      console.error('No question entered')
-      setAnswer('No question entered')
+      toast.error('No question entered')
       return null
     }
 
@@ -34,6 +34,7 @@ const Question = () => {
 
   return (
     <div>
+      <ToastContainer />
       <form style={{ display: 'flex' }} onSubmit={handleSubmit}>
         <div style={{ paddingBottom: '30px', width: '80%' }}>
           <input
