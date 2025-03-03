@@ -9,7 +9,7 @@ import styles from './index.module.css'
 const Question = () => {
   const [question, setQuestion] = useState('')
   const [answer, setAnswer] = useState('')
-  const [selectedModel, setSelectedModel] = useState<Model>(Model.LLAMA_3B_3_2)
+  const [selectedModel, setSelectedModel] = useState<Model>(Model.DOLPHIN3)
   const inputRef = useRef<HTMLInputElement>(null)
 
   const handleChange = (event: React.FormEvent<HTMLInputElement>) => {
@@ -78,7 +78,24 @@ const Question = () => {
           </div>
         </div>
       </form>
-      <div className={styles.answer}>{answer}</div>
+      <div className={styles.answer}>
+        {answer}
+        {answer && (
+          <button
+            type='button'
+            className={styles.copyButton}
+            onClick={() => {
+              navigator.clipboard.writeText(answer)
+              toast.success('Copied to clipboard!')
+            }}
+          >
+            <svg className={styles.copyIcon} xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'>
+              <title>Copy to clipboard</title>
+              <path d='M16 1H4C2.897 1 2 1.897 2 3V17H4V3H16V1ZM19 5H7C5.897 5 5 5.897 5 7V19C5 20.103 5.897 21 7 21H19C20.103 21 21 20.103 21 19V7C21 5.897 20.103 5 19 5ZM19 19H7V7H19V19Z' />
+            </svg>
+          </button>
+        )}
+      </div>
     </div>
   )
 }

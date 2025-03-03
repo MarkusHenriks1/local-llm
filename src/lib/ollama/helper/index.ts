@@ -13,7 +13,7 @@ export enum Model {
 }
 
 const ollama = new ChatOllama({
-  model: Model.LLAMA_3B_3_2,
+  model: Model.DOLPHIN3,
   streaming: false,
   checkOrPullModel: true
 })
