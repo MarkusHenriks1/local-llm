@@ -9,7 +9,7 @@ import styles from './index.module.css'
 const Question = () => {
   const [question, setQuestion] = useState('')
   const [answer, setAnswer] = useState('')
-  const [selectedModel, setSelectedModel] = useState(Model.LLAMA_3B_3_2)
+  const [selectedModel, setSelectedModel] = useState<Model>(Model.LLAMA_3B_3_2)
   const inputRef = useRef<HTMLInputElement>(null)
 
   const handleChange = (event: React.FormEvent<HTMLInputElement>) => {
@@ -50,7 +50,7 @@ const Question = () => {
             className={styles.input}
             type='text'
             value={question}
-            placeholder='write your text here'
+            placeholder='Insert question here'
             onChange={handleChange}
             ref={inputRef}
           />
