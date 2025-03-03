@@ -1,21 +1,32 @@
 'use client'
 
 import type * as React from 'react'
-import { useState } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { Model, askOllama } from './helper'
 import { toast, ToastContainer } from 'react-toastify'
+import styles from './index.module.css'
 
 const Question = () => {
   const [question, setQuestion] = useState('')
   const [answer, setAnswer] = useState('')
   const [selectedModel, setSelectedModel] = useState(Model.LLAMA_3B_3_2)
+  const inputRef = useRef<HTMLInputElement>(null)
 
   const handleChange = (event: React.FormEvent<HTMLInputElement>) => {
     setQuestion(event.currentTarget.value)
   }
   const handleReset = () => {
     setQuestion('')
+    if (inputRef.current) {
+      inputRef.current.focus()
+    }
   }
+
+  useEffect(() => {
+    if (inputRef.current) {
+      inputRef.current.focus()
+    }
+  }, [])
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
@@ -31,28 +42,29 @@ const Question = () => {
   }
 
   return (
-    <div>
+    <div className={styles.container}>
       <ToastContainer />
-      <form style={{ display: 'flex' }} onSubmit={handleSubmit}>
-        <div style={{ paddingBottom: '30px', width: '80%' }}>
+      <form className={styles.form} onSubmit={handleSubmit}>
+        <div className={styles.inputContainer}>
           <input
-            style={{ fontSize: '30px', width: '80%', paddingRight: '30px' }}
-            autoFocus
+            className={styles.input}
             type='text'
             value={question}
+            placeholder='write your text here'
             onChange={handleChange}
+            ref={inputRef}
           />
-          <button style={{ fontSize: '30px' }} type='submit'>
+          <button className={styles.button} type='submit'>
             Ask
           </button>
-          <button style={{ fontSize: '30px' }} type='reset' onClick={handleReset}>
+          <button className={`${styles.button} ${styles.resetButton}`} type='reset' onClick={handleReset}>
             Reset
           </button>
-          <div style={{ paddingTop: '30px', display: 'flex' }}>
+          <div className={styles.selectContainer}>
             <div>
-              <div style={{ fontSize: '20px' }}>Select your model</div>
+              <div className={styles.selectLabel}>Select your model</div>
               <select
-                style={{ fontSize: '30px' }}
+                className={styles.select}
                 value={selectedModel}
                 onChange={(e) => setSelectedModel(e.target.value as React.SetStateAction<Model>)}
               >
@@ -66,7 +78,7 @@ const Question = () => {
           </div>
         </div>
       </form>
-      <div style={{ width: '80%', fontSize: '30px' }}>{answer}</div>
+      <div className={styles.answer}>{answer}</div>
     </div>
   )
 }
