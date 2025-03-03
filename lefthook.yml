@@ -1,0 +1,8 @@
+pre-commit:
+  commands:
+    lint:
+      glob: "*.{js,ts,jsx,tsx,css,scss}"
+      run: pnpm lint
+    format:
+      glob: "*.{js,ts,jsx,tsx,css,scss}"
+      run: pnpm format

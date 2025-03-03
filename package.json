@@ -11,7 +11,8 @@
     "lint:fix": "biome lint --write ./",
     "format": "biome format ./",
     "format:fix": "biome format --write ./",
-    "upgrade:interactive": "pnpm ncu -i"
+    "upgrade:interactive": "pnpm ncu -i",
+    "prepare": "lefthook install"
   },
   "dependencies": {
     "@langchain/core": "^0.3.42",
@@ -28,6 +29,7 @@
     "@types/react": "19.0.10",
     "@types/react-dom": "19.0.4",
     "autoprefixer": "^10.4.16",
+    "lefthook": "^1.11.2",
     "npm-check-updates": "^16.14.11",
     "postcss": "^8.4.32",
     "typescript": "^5.8.2"
